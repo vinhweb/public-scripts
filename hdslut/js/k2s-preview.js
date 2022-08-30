@@ -12,7 +12,7 @@
         return 'k2s.cc';
     }
     document.addEventListener("DOMContentLoaded", function(event) {
-        var previewScriptUrl = 'https://' + getScriptHostname() + '/js/preview.js';
+        var previewScriptUrl = 'https://' + getScriptHostname() + '/js/video-preview.js';
         function previewExist(ufid, parent) {
             var otherScripts = parent ? parent.querySelectorAll('script') : null;
             for (var i in otherScripts) {
@@ -43,6 +43,17 @@
                     ufid = ufidSearch[1];
                 }
                 if (!ufid || !previewExist(ufid, parent)) {
+                    item.innerHTML = "<div class='link_preview_box'>" + item.innerHTML + "</div>"
+
+                    let boxPricingDiv = document.createElement('div');
+                    boxPricingDiv.innerHTML = '<div class="buy-premium"><div class="buy-premium-box"><label class="bp-label"><input type="radio" name="buy-prem" value="30" checked=""><span class="bp-item"><i class="bp-item-check"></i><span class="fw-bold">30 day membership</span><span class="muted">($21.95) month +10% days</span></span></label><label class="bp-label"><input type="radio" name="buy-prem" value="120"><span class="bp-item"><i class="bp-item-check"></i><span class="fw-bold">120 day membership</span><span class="muted">($17.32) month +10% days</span></span></label><label class="bp-label"><input type="radio" name="buy-prem" value="365"><span class="bp-item"><i class="bp-item-check"></i><span class="fw-bold">365 day membership</span><span class="muted">($11.75) month +10% days</span></span></label><div class="bp-submit"><a href="https://k2s.cc/promocode/40573389sexhdslut" target="_blank" class="btn">Buy Premium</a></div></div></div>'
+                    item.parentNode.append(boxPricingDiv)
+
+                    let heading = document.createElement('h4');
+                    heading.innerHTML = '<div class="video_title_box">Watch online</div>'
+                    item.parentNode.append(heading)
+
+
                     var previewScriptTag = document.createElement('script');
                     previewScriptTag.src = previewScriptUrl;
                     if (thisScript.getAttribute('no-download') !== null) {
@@ -61,13 +72,14 @@
                     } else {
                         contentOrderParams = defaultContentOrderParams;
                     }
-                    var before = true;
+                    var before = false;
                     for (var param in contentOrderParams) {
                         if (contentOrderParams[param] === 'link') {
                             before = false;
                         }
                         if (objects[contentOrderParams[param]]) {
-                            item.parentNode.insertBefore(objects[contentOrderParams[param]], (before ? item : item.nextSibling));
+                            // item.parentNode.insertBefore(objects[contentOrderParams[param]], (before ? item : item.nextSibling));
+                            item.parentNode.append(objects[contentOrderParams[param]])
                         }
                     }
                     if (contentOrderParams.indexOf('link') === -1) {
