@@ -232,3 +232,7 @@
 .k2s-preview .buy-premium{
     display: none;
 }
+
+.buy-premium:not(:first-of-type){
+    display: none;
+}
